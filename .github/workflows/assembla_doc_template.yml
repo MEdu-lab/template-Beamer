@@ -28,9 +28,7 @@ jobs:
     steps:
     - name: Install dependencies (missing LaTeX packages )
       run: |
-        apk add --no-cache git python3 py3-pip bash pandoc tar
-        pip install --break-system-packages pyyaml python-liquid
-        tlmgr install preprint xcolor
+        apk add --no-cache git bash pandoc tar
         
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -39,16 +37,9 @@ jobs:
 
     - name: Processa i template con Python  e Genera il PDF con Pandoc
       run: |
-        rm -f README.md *.pdf
-        python3 .github/scripts/process-template.py
-        TITLE=$(sed -n '/^---$/,/^---$/p' README.md | grep '^title:' | head -n1 | sed 's/title:[[:space:]]*//; s/^ *//; s/ *$//; s/[*]//g')
-        SAFE_TITLE=$(echo "$TITLE" | tr ' ' '_' | tr -cd '[:alnum:]_')
-        TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-        #PDF_NAME="${SAFE_TITLE}-${TIMESTAMP}.pdf"
-        PDF_NAME="${SAFE_TITLE}-MEduLab-${TIMESTAMP}.pdf"
-        echo "Generazione PDF: $PDF_NAME"
-        pandoc README.md -o "$PDF_NAME" \
-          --pdf-engine=pdflatex \
+        PDF_NAME="test.pdf"
+        pandoc 01-intestazione-presentazione.md -o "$PDF_NAME" \
+          --pdf-engine=xelatex \
           --template=styles/template.latex
         echo "PDF_NAME=$PDF_NAME" >> $GITHUB_ENV
         mkdir -p pages_artifact
@@ -72,7 +63,6 @@ jobs:
         git config --global user.name "GitHub Action"
         rm -f *.pdf
         git add -u
-        git add README.md
         git diff --staged --quiet || git commit -m "Auto-aggiornamento documento con template [skip ci]"
         
     - name: Push delle modifiche
