@@ -35,19 +35,10 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Cache LilyPond binary
-      uses: actions/cache@v3
-      with:
-        path: ~/lilypond
-        key: lilypond-2.24.3
-
-    - name: Installa LilyPond (precompilato)
+    - name: Installa LilyPond
       run: |
-        if [ ! -d "$HOME/lilypond" ]; then
-          wget http://lilypond.org/download/binaries/linux-64/lilypond-2.24.3-linux-x86_64.tar.gz
-          tar -xzf lilypond-2.24.3-linux-x86_64.tar.gz -C $HOME
-        fi
-        echo "$HOME/lilypond/bin" >> $GITHUB_PATH
+        apt-get update
+        apt-get install -y --no-install-recommends lilypond
 
     - name: Compila i frammenti musicali LilyPond
       run: |
