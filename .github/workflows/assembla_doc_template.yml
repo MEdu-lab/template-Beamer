@@ -26,9 +26,10 @@ jobs:
       image: ghcr.io/dmgiulioromano/latex-docker-ubuntu:2025.1-small
 
     steps:
-    - name: Install dependencies (missing LaTeX packages )
+    - name: Install dependencies
       run: |
-        apt-get update && apt-get install -y git bash tar wget
+        apt-get update
+        apt-get install -y git bash tar wget xz-utils
         # Download in parallelo (background jobs)
         PANDOC_VERSION=3.8.2
         PANDOC_XREF_VERSION=0.3.22
