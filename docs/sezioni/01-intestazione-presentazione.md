@@ -1,14 +1,97 @@
-Per il quarto anno consecutivo vi proponiamo il laboratorio di musica d'insieme per l'infanzia, un corso extracurriculare pomeridiano aperto alle bambine e ai bambini che frequentano la {{ progetto.sottotitolo }}. Ogni anno il laboratorio è stato guidato da musicisti formati nella pratica della musica contemporanea, elettroacustica e popolare, che hanno condiviso con i bambini un'atmosfera leggera ma densa di attività.
-Nella progettazione di esperienze di apprendimento significative cerchiamo l'innesco della scintilla dell'interesse dei bambini e puntiamo a realizzare alcune istanze della musica di ricerca del XX e XXI secolo su cui lavoriamo quotidianamente, in collaborazione con alcuni importanti Conservatori italiani.
+---
+# Metadati della presentazione (YAML header)
+title: "La Mia Presentazione"
+subtitle: "Un sottotitolo interessante"
+author: 
+  - Nome Cognome
+  - Altro Autore
+institute: Università/Azienda
+date: \today
+# Opzioni Beamer
+theme: Madrid
+colortheme: default
+aspectratio: 169          # 16:9 (usa 43 per 4:3)
+navigation: empty         # nascondi simboli navigazione
+section-titles: true      # slide per ogni sezione
+# Altre opzioni utili
+toc: true                 # indice
+toc-title: "Contenuti"
+fontsize: 10pt
+lang: it
+colorlinks: true
+linkcolor: blue
+---
 
-\vspace{.7cm}
+# Introduzione
 
->*il ritmo si può solo liberare, sprigionare. Ritmo non è un'entità astratta, ritmo è la vita stessa. Ritmo agisce e provoca, è la forza che unisce linguaggio, musica e movimento.* (Carl Orff)
+## Prima Slide
 
+Questo è un esempio di testo nella prima slide.
 
-<!-- **Maestri:** 
-{% for maestro in maestri %}
-- **{{ maestro.nome }}** - {{ maestro.qualifica }}
-{% endfor %}
+- Punto elenco 1
+- Punto elenco 2
+- Punto elenco 3
 
--->
+## Slide con Codice
+
+Ecco un esempio di codice:
+
+```python
+def saluta(nome):
+    return f"Ciao {nome}!"
+
+print(saluta("Mondo"))
+```
+
+# Sezione Principale
+
+## Slide con Formula
+
+L'equazione di Einstein:
+
+$$E = mc^2$$
+
+Oppure inline: $a^2 + b^2 = c^2$
+
+## Slide con Immagine
+
+![Didascalia dell'immagine](immagine.png){width=70%}
+
+## Slide con Tabella
+
+| Colonna 1 | Colonna 2 | Colonna 3 |
+|-----------|-----------|-----------|
+| A         | B         | C         |
+| 1         | 2         | 3         |
+| X         | Y         | Z         |
+
+# Conclusioni
+
+## Ultima Slide
+
+- Punto chiave 1
+- Punto chiave 2
+- Punto chiave 3
+
+**Grazie per l'attenzione!**
+
+## Slide con Due Colonne
+
+:::::: {.columns}
+::: {.column width="50%"}
+
+**Colonna Sinistra**
+
+- Punto A
+- Punto B
+
+:::
+::: {.column width="50%"}
+
+**Colonna Destra**
+
+- Punto 1
+- Punto 2
+
+:::
+::::::
