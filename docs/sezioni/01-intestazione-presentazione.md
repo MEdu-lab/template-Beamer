@@ -55,7 +55,7 @@ Oppure inline: $a^2 + b^2 = c^2$
 
 ## Slide con Immagine
 
-![Didascalia dell'immagine](immagine.png){width=70%}
+![Didascalia dell'immagine](docs/assets/immagine.png){width=70%}
 
 ## Slide con Tabella
 
