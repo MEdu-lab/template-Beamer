@@ -1,0 +1,50 @@
+% tikz-commands.sty 
+% Libreria di comandi TikZ personalizzati 
+% Autori: Giulio Romano De Mattia, Pietro Barale, Marco Di Gasbarro 
+\NeedsTeXFormat{LaTeX2e} \ProvidesPackage{tikz-commands}[2025/01/01 Custom TikZ Commands] \RequirePackage{tikz} % Comando per creare sequenze di box con parole 
+% Uso: \wordboxes[larghezza]{opzioni stile}{parola1,parola2,parola3} 
+% Se larghezza è omessa, usa 1.5cm di default \makeatletter 
+% Definisci il contatore UNA VOLTA fuori dal comando 
+
+\newcounter{tikzwordcount} 
+\newcommand{\wordboxes}[4][auto]{% 
+
+\begin{tikzpicture}[#2] % Resetta e conta le parole 
+	\setcounter{tikzwordcount}{0}% 
+	\foreach \word in {#3} {% 
+		\stepcounter{tikzwordcount}% 
+	}% 
+
+\edef\numwords{\thetikzwordcount}%
+% Calcola larghezza automatica se richiesto
+\def\autocheck{#1}%
+\def\autoword{auto}%
+\ifx\autocheck\autoword
+  % Modalità auto: dividi la larghezza disponibile
+  \pgfmathsetmacro{\totalspace}{\textwidth/1cm - \numwords*0.1}%
+  \pgfmathsetmacro{\boxwidth}{\totalspace/\numwords}%
+  \pgfmathsetmacro{\spacing}{\boxwidth}%
+\else
+  % Modalità manuale: usa il valore specificato
+  \pgfmathsetmacro{\boxwidth}{#1}%
+  \pgfmathsetmacro{\spacing}{#1}%
+\fi
+
+\foreach [count=\i from 0] \word in {#3} {%
+  \pgfmathsetmacro{\xpos}{\i*\spacing}%
+  \node[
+    draw,
+    rectangle,
+    minimum width=\boxwidth cm,
+    minimum height=1.5cm,
+    anchor=west,
+    align=center,
+    font=#4,
+    inner sep=0pt
+  ] at (\xpos cm, 0) {\word};%
+}%
+
+\end{tikzpicture}% 
+} 
+\makeatother
+\endinput
