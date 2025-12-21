@@ -35,10 +35,18 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Installa LilyPond
+#    - name: Installa LilyPond
+#      run: |
+#        apt-get update
+#        apt-get install -y --no-install-recommends lilypond
+
+    - name: Installa LilyPond (binario ufficiale)
       run: |
-        apt-get update
-        apt-get install -y --no-install-recommends lilypond
+        # Scarica e installa LilyPond 2.24.4
+        wget https://gitlab.com/lilypond/lilypond/-/releases/v2.24.4/downloads/lilypond-2.24.4-linux-x86_64.tar.gz
+        tar -xzf lilypond-2.24.4-linux-x86_64.tar.gz
+        # Aggiungi al PATH
+        echo "$PWD/lilypond-2.24.4/bin" >> $GITHUB_PATH
 
     - name: Compila i frammenti musicali LilyPond
       run: |
