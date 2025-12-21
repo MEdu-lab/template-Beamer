@@ -38,7 +38,7 @@ jobs:
     - name: Processa i template con Python  e Genera il PDF con Pandoc
       run: |
         PDF_NAME="test.pdf"
-        pandoc 01-intestazione-presentazione.md -o "$PDF_NAME" \
+        pandoc docs/sezioni/01-intestazione-presentazione.md -o "$PDF_NAME" \
           --pdf-engine=xelatex \
           --template=styles/template.latex
         echo "PDF_NAME=$PDF_NAME" >> $GITHUB_ENV
