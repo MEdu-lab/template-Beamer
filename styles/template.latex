@@ -39,6 +39,37 @@ $endfor$
 \setbeamertemplate{caption label separator}{: }
 \setbeamercolor{caption name}{fg=normal text.fg}
 
+\setbeamercolor{normal text}{fg=black}
+\setbeamercolor{structure}{fg=black}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{subtitle}{fg=black}
+\setbeamercolor{author}{fg=black}
+\setbeamercolor{date}{fg=black}
+\setbeamercolor{institute}{fg=black}
+\setbeamercolor{part title}{fg=black}       
+\setbeamercolor{section title}{fg=black}    
+\setbeamercolor{subsection title}{fg=black} 
+\setbeamercolor{section in toc}{fg=black}
+
+% Dimensioni font per titoli
+\setbeamerfont{title}{size=\Huge}
+\setbeamerfont{section title}{size=\huge}        % header 1
+\setbeamerfont{frametitle}{size=\LARGE}           % header 2
+\setbeamerfont{subsection title}{size=\Large}     % header 3
+
+\makeatletter
+\setbeamertemplate{frametitle}{
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,sep=15pt,center]{frametitle}
+    \MakeUppercase{\insertframetitle}\par
+    \ifx\insertframesubtitle\@empty\else
+      \usebeamerfont{framesubtitle}\insertframesubtitle\par
+    \fi
+  \end{beamercolorbox}
+}
+\makeatother
+
 % Navigazione (di default nascosta)
 \beamertemplatenavigationsymbols$if(navigation)$$navigation$$else$empty$endif$
 
@@ -66,7 +97,7 @@ $if(section-titles)$
 \setbeamertemplate{part page}{
   \centering
   \begin{beamercolorbox}[sep=16pt,center]{part title}
-    \usebeamerfont{part title}\insertpart\par
+    \usebeamerfont{part title}\MakeUppercase{\insertpart}\par
   \end{beamercolorbox}
 }
 
@@ -74,7 +105,7 @@ $if(section-titles)$
 \setbeamertemplate{section page}{
   \centering
   \begin{beamercolorbox}[sep=12pt,center]{part title}
-    \usebeamerfont{section title}\insertsection\par
+    \usebeamerfont{section title}\MakeUppercase{\insertsection}\par
   \end{beamercolorbox}
 }
 
@@ -82,7 +113,7 @@ $if(section-titles)$
 \setbeamertemplate{subsection page}{
   \centering
   \begin{beamercolorbox}[sep=8pt,center]{part title}
-    \usebeamerfont{subsection title}\insertsubsection\par
+    \usebeamerfont{subsection title}\MakeUppercase{\insertsubsection}\par
   \end{beamercolorbox}
 }
 
@@ -116,9 +147,14 @@ $endif$
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  
+  % Imposta DejaVu Sans come font principale
+  \setmainfont{DejaVu Sans}
+  \setsansfont{DejaVu Sans}
+  \setmonofont{DejaVu Sans Mono}
 \fi
 
-% Font di default (Latin Modern)
+% Font di default (Latin Modern) - solo se non specificato
 $if(fontfamily)$
 $else$
 \usepackage{lmodern}
@@ -305,8 +341,8 @@ $if(colorlinks)$
   colorlinks=true,
   linkcolor={$if(linkcolor)$$linkcolor$$else$Maroon$endif$},
   filecolor={$if(filecolor)$$filecolor$$else$Maroon$endif$},
-  citecolor={$if(citecolor)$$citecolor$$else$Blue$endif$},
-  urlcolor={$if(urlcolor)$$urlcolor$$else$Blue$endif$},
+  citecolor={$if(citecolor)$$citecolor$$else$Maroon$endif$},
+  urlcolor={$if(urlcolor)$$urlcolor$$else$Maroon$endif$},
 $else$
 $if(boxlinks)$
 $else$

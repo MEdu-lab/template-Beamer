@@ -2,9 +2,9 @@
 # Metadati della presentazione (YAML header)
 title: "La Mia Presentazione"
 subtitle: "Un sottotitolo interessante"
-author: 
-  - Giulio Romano De Mattia
-  - Pietro Barale
+# author: 
+#  - Giulio Romano De Mattia
+#  - Pietro Barale
 institute: MEduLab
 date: \today
 # Opzioni Beamer
@@ -14,12 +14,11 @@ aspectratio: 169          # 16:9 (usa 43 per 4:3)
 navigation: empty         # nascondi simboli navigazione
 section-titles: true      # slide per ogni sezione
 # Altre opzioni utili
-toc: true                 # indice
+toc: false                 # indice
 toc-title: "Contenuti"
 fontsize: 10pt
 lang: it
 colorlinks: true
-linkcolor: blue
 ---
 
 # Introduzione
