@@ -28,7 +28,7 @@ jobs:
     steps:
     - name: Install dependencies (missing LaTeX packages )
       run: |
-        apt-get update && apt-get install -y git bash tar
+        apt-get update && apt-get install -y git bash tar wget
         # Download in parallelo (background jobs)
         PANDOC_VERSION=3.8.2
         PANDOC_XREF_VERSION=0.3.22
