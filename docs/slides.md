@@ -68,7 +68,6 @@ Oppure inline: $a^2 + b^2 = c^2$
 
 ![Didascalia dell'immagine](docs/assets/music/frammento.pdf){width=20%}
 
-picnsdoacnòsdkvlczdnsvlkvnsòdvkasnvsdkvsndvòdsklvnsvòlkadnvdslkvnasdvòldnvdlsòkvndv.
 
 
 ## Slide con Tabella
