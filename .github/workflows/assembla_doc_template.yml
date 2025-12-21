@@ -23,7 +23,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/kjarosh/latex:2025.1-basic
+      image: ghcr.io/dmgiulioromano/latex-docker-ubuntu:2025.1-small
 
     steps:
     - name: Install dependencies (missing LaTeX packages )
@@ -35,15 +35,51 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Cache LilyPond binary
+      uses: actions/cache@v3
+      with:
+        path: ~/lilypond
+        key: lilypond-2.24.3
+
+    - name: Installa LilyPond (precompilato)
+      run: |
+        if [ ! -d "$HOME/lilypond" ]; then
+          wget http://lilypond.org/download/binaries/linux-64/lilypond-2.24.3-linux-x86_64.tar.gz
+          tar -xzf lilypond-2.24.3-linux-x86_64.tar.gz -C $HOME
+        fi
+        echo "$HOME/lilypond/bin" >> $GITHUB_PATH
+
+    - name: Compila i frammenti musicali LilyPond
+      run: |
+        MUSIC_SRC="docs/music-src"
+        MUSIC_OUT="docs/assets/music"
+        
+        # Crea la directory di output
+        mkdir -p "$MUSIC_OUT"
+        
+        # Compila tutti i file .ly
+        for ly_file in "$MUSIC_SRC"/*.ly; do
+          if [ -f "$ly_file" ]; then
+            filename=$(basename "$ly_file" .ly)
+            echo "Compilando $ly_file..."
+            lilypond -dcrop -dno-print-pages -o "$MUSIC_OUT/$filename" "$ly_file"
+            
+            # Pulisce i file temporanei
+            rm -f "$MUSIC_SRC/$filename.ps" "$MUSIC_OUT/$filename.cropped.png"
+          fi
+        done
+
     - name: Processa i template con Python  e Genera il PDF con Pandoc
       run: |
-        PDF_NAME="test.pdf"
-        pandoc docs/sezioni/01-intestazione-presentazione.md -o "$PDF_NAME" \
+        PDF_NAME="output.pdf"
+        pandoc docs/slides.md -o "$PDF_NAME" \
           --pdf-engine=xelatex \
-          --template=styles/template.latex
+          --template=styles/template.latex \
+          -t beamer
         echo "PDF_NAME=$PDF_NAME" >> $GITHUB_ENV
         mkdir -p pages_artifact
         cp "${PDF_NAME}" pages_artifact/latest.pdf
+
     - uses: actions/upload-artifact@v4
       with:
         name: progetto-completo_pdf

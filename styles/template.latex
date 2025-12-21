@@ -52,6 +52,13 @@ $endfor$
 \raggedbottom
 
 % -----------------------------------------------------------------------------
+% 3.1 PACCHETTI PER LA MIUZIC
+% -----------------------------------------------------------------------------
+
+\usepackage{tikz}
+
+
+% -----------------------------------------------------------------------------
 % 4. PAGINE SEZIONE/SOTTOSEZIONE (opzionale)
 % -----------------------------------------------------------------------------
 $if(section-titles)$
@@ -220,7 +227,7 @@ $if(graphics)$
     \resizebox{\linewidth}{!}{\usebox\pandoc@box}%
   \else
     \ifdim\ht\pandoc@box>\textheight
-      \resizebox{!}{\textheight}{\usebox\pandoc@box}}%
+      \resizebox{!}{\textheight}{\usebox\pandoc@box}%
     \else
       \usebox\pandoc@box
     \fi

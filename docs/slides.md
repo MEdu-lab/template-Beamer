@@ -3,12 +3,12 @@
 title: "La Mia Presentazione"
 subtitle: "Un sottotitolo interessante"
 author: 
-  - Nome Cognome
-  - Altro Autore
-institute: Università/Azienda
+  - Giulio Romano De Mattia
+  - Pietro Barale
+institute: MEduLab
 date: \today
 # Opzioni Beamer
-theme: Madrid
+theme: default
 colortheme: default
 aspectratio: 169          # 16:9 (usa 43 per 4:3)
 navigation: empty         # nascondi simboli navigazione
@@ -55,7 +55,21 @@ Oppure inline: $a^2 + b^2 = c^2$
 
 ## Slide con Immagine
 
-![Didascalia dell'immagine](docs/assets/immagine.png){width=70%}
+![Didascalia dell'immagine](docs/assets/images/immagine.png){width=70%}
+
+## Slide con Spartito
+
+| Colonna 1 | Colonna 2 | Colonna 3 |
+|-----------|-----------|-----------|
+| A         | B         | C         |
+| 1         | 2         | 3         |
+| X         | Y         | Z         |
+
+
+![Didascalia dell'immagine](docs/assets/music/frammento.pdf){width=20%}
+
+picnsdoacnòsdkvlczdnsvlkvnsòdvkasnvsdkvsndvòdsklvnsvòlkadnvdslkvnasdvòldnvdlsòkvndv.
+
 
 ## Slide con Tabella
 
